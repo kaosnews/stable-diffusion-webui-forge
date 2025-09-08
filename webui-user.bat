@@ -3,7 +3,12 @@
 set PYTHON=
 set GIT=
 set VENV_DIR=
-set COMMANDLINE_ARGS=
+@REM Only set COMMANDLINE_ARGS if not already set
+if not defined COMMANDLINE_ARGS set COMMANDLINE_ARGS=
+
+@REM Use requirements file without direct wheel URLs to prevent redownloading
+@REM Uncomment the following line to use the optimized requirements file
+@REM set REQS_FILE=requirements_versions_no_wheels.txt
 
 @REM Uncomment following code to reference an existing A1111 checkout.
 @REM set A1111_HOME=Your A1111 checkout dir
@@ -15,4 +20,4 @@ set COMMANDLINE_ARGS=
 @REM  --embeddings-dir %A1111_HOME%/embeddings ^
 @REM  --lora-dir %A1111_HOME%/models/Lora
 
-call webui.bat
+call webui.bat %COMMANDLINE_ARGS%
